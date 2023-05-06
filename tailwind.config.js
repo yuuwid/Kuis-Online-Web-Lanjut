@@ -13,12 +13,19 @@ module.exports = {
 
     theme: {
         extend: {
-            colors: {
-                "yuuwid-purple": "#472183",
-                "yuuwid-blue": "#4B56D2",
-                "yuuwid-sky": "#82C3EC",
-                "yuuwid-white": "#F1F6F5",
-                "yuuwid-black": "#202020",
+            ccolors: {
+                "kuis-blue": {
+                    300: "#E5E0FF",
+                    500: "#8EA7E9",
+                    800: "#7286D3",
+                },
+                "kuis-yellow": {
+                    500: "#FDF7C3",
+                    700: "#FFDEB4",
+                },
+                "kuis-purple": "#B2A4FF",
+                "kuis-red": "#FFB4B4",
+                "kuis-white": "#FFFFFF",
             },
             fontFamily: {
                 nunito: ["Nunito"],
@@ -29,5 +36,8 @@ module.exports = {
         },
     },
 
-    plugins: [require("@tailwindcss/forms"), require("tw-elements/dist/plugin.cjs")],
+    plugins: [
+        require("@tailwindcss/forms"),
+        require('flowbite/plugin')
+    ],
 };
