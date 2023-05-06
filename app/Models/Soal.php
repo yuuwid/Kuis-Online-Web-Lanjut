@@ -9,23 +9,29 @@ class Soal extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "id_soal";
+    protected $primaryKey = 'id_soal';
 
 
     public function kuis()
     {
-        return $this->belongsTo(Kuis::class, 'id_kuis', 'id_kuis');
+        return $this->belongsTo(Kuis::class, "id_soal", "id_soal");
     }
 
 
-    public function jawaban()
+    public function options()
     {
-        return $this->hasMany(Jawaban::class, 'id_jawaban', 'id_jawaban');
+        return $this->hasMany(Options::class, "id_option");
     }
 
 
-    public function jawab()
+    public function images()
     {
-        return $this->belongsToMany(Jawab::class, 'jawab_soal', 'id_soal', 'id_jawab');
+        return $this->hasMany(Images::class, "id_image");
+    }
+
+
+    public function details()
+    {
+        return $this->hasMany(ResultDetails::class, "id_soal");
     }
 }

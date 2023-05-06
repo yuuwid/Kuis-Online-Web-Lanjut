@@ -11,14 +11,13 @@ class Kuis extends Model
 
     protected $primaryKey = 'id_kuis';
 
-
-    public function users()
+    public function results()
     {
-        return $this->belongsToMany(User::class, 'user_kuis', 'id_kuis', 'id_user');
+        return $this->hasMany(Results::class, "id_kuis");
     }
 
     public function soal()
     {
-        return $this->hasMany(Soal::class, 'id_soal', 'id_soal');
+        return $this->hasMany(Soal::class, "id_soal");
     }
 }

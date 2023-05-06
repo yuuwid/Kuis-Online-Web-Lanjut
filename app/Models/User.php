@@ -11,8 +11,8 @@ class User extends Model
 
     protected $primaryKey = 'id_user';
 
-    public function kuis()
+    public function results()
     {
-        return $this->belongsToMany(Kuis::class, 'user_kuis', 'id_user', 'id_kuis');
+        return $this->hasMany(Results::class, "id_user");
     }
 }

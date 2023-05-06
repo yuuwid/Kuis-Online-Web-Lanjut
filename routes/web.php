@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+
+require 'render.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return render('home.Home');
+});
+
+Route::get('/about', function () {
+    return render('about.About');
 });
