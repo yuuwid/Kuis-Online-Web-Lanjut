@@ -2,27 +2,42 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./resources/**/*.{html,js}",
-    "./resources/pages/**/*.php",
-    "./node_modules/flowbite/**/*.js",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        "kuis-purple": "#472183",
-        "kuis-blue": "#4B56D2",
-        "kuis-sky": "#82C3EC",
-        "kuis-white": "#F1F6F5",
-        "kuis-black": "#202020",
-      },
-      fontFamily: {
-        nunito: ["Nunito"],
-        oxygen: ["Oxygen"],
-        prompt: ["Prompt"],
-        sans: ["Figtree", ...defaultTheme.fontFamily.sans],
-      },
+    content: [
+        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
+        "./storage/framework/views/*.php",
+        "./resources/views/**/*.blade.php",
+        "./resources/pages/**/*.vue",
+        "./resources/js/**/*.vue",
+        "./node_modules/tw-elements/dist/js/**/*.js",
+    ],
+
+    theme: {
+        extend: {
+            colors: {
+                "kuis-blue": {
+                    300: "#E5E0FF",
+                    500: "#799AF1",
+                    800: "#2E3DAB",
+                },
+                "kuis-yellow": {
+                    500: "#FDF7C3",
+                    700: "#FFDEB4",
+                },
+                "kuis-purple": "#BD7BFF",
+                "kuis-red": "#F35B5B",
+                "kuis-white": "#FFFFFF",
+            },
+            fontFamily: {
+                nunito: ["Nunito"],
+                oxygen: ["Oxygen"],
+                prompt: ["Prompt"],
+                sans: ["Figtree", ...defaultTheme.fontFamily.sans],
+            },
+        },
     },
-  },
-  plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+
+    plugins: [
+        require("@tailwindcss/forms"),
+        require('flowbite/plugin')
+    ],
 };
