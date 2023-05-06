@@ -4,7 +4,6 @@
         @submit.prevent="form.post('/admin/auth/login')"
     >
         <div
-            id="alert-2"
             class="flex p-4 mb-4 text-red-800 rounded-lg bg-red-50 items-center"
             role="alert"
             v-if="$page.props.flash_err.flash_err"
@@ -14,15 +13,6 @@
             <div class="ml-3 text-sm font-medium">
                 {{ $page.props.flash_err.flash_err }}
             </div>
-            <button
-                type="button"
-                class="ml-auto -mx-1.5 -my-1.5 bg-red-50 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8"
-                data-dismiss-target="#alert-2"
-                aria-label="Close"
-            >
-                <span class="sr-only">Close</span>
-                <i class="bi bi-x text-xl p-0"></i>
-            </button>
         </div>
         <section>
             <h1 class="text-3xl mb-6 font-bold text-center lg:text-left">
@@ -96,7 +86,7 @@
 <script>
 import { Link } from "@inertiajs/vue3";
 import { useForm } from "@inertiajs/vue3";
-import { initDismisses } from "flowbite";
+import { initFlowbite } from "flowbite";
 
 export default {
     props: {},
@@ -114,7 +104,7 @@ export default {
         };
     },
     mounted: () => {
-        initDismisses();
+        initFlowbite();
     },
 };
 </script>
