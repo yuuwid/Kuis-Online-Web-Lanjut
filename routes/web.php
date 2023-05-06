@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
-require 'render.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,6 @@ Route::get('/', function () {
     return render('home.Home');
 });
 
-Route::get('/about', function () {
-    return render('about.About');
-});
+
+Route::get('/admin/auth/login', [AdminController::class, "index_login"]);
+Route::post('/admin/auth/login', [AdminController::class, "login_req"]);

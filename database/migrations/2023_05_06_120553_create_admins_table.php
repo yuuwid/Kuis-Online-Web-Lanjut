@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id("id_admin");
 
             $table->string("nama", 100)->nullable(false);
-            $table->string("username", 50)->nullable(false)->unique();
+            $table->string("email", 50)->nullable(false)->unique();
             $table->text("password")->nullable(false);
 
             $table->timestamps();

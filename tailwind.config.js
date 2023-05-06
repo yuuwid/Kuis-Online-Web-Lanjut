@@ -13,18 +13,18 @@ module.exports = {
 
     theme: {
         extend: {
-            ccolors: {
+            colors: {
                 "kuis-blue": {
                     300: "#E5E0FF",
-                    500: "#8EA7E9",
-                    800: "#7286D3",
+                    500: "#799AF1",
+                    800: "#2E3DAB",
                 },
                 "kuis-yellow": {
                     500: "#FDF7C3",
                     700: "#FFDEB4",
                 },
-                "kuis-purple": "#B2A4FF",
-                "kuis-red": "#FFB4B4",
+                "kuis-purple": "#BD7BFF",
+                "kuis-red": "#F35B5B",
                 "kuis-white": "#FFFFFF",
             },
             fontFamily: {
