@@ -25,9 +25,26 @@ class AdminController extends Controller
         $data = $request->only(['email', 'password']);
 
         if (Auth::guard('webadmin')->attempt($data)) {
-            return redirect()->intended('/');
+            return redirect()->route('admin.dashboard');
         } else {
             return redirect()->back()->with('flash_err', 'Email or Password Invalid !');
         }
+    }
+
+    public function logout()
+    {
+        Auth::guard('webadmin')->logout();
+
+        return redirect()->route('admin.login');
+    }
+
+    public function dashboard()
+    {
+        return render('admin.dashboard.Dashboard');
+    }
+
+    public function index_list_kuis()
+    {
+        return render('admin.dashboard.DaftarKuis');
     }
 }

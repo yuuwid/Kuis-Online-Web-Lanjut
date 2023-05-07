@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +21,16 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin/auth/login', [AdminController::class, "index_login"]);
-Route::post('/admin/auth/login', [AdminController::class, "login_req"]);
+// ADMIN ROUTES
+Route::get('/admin/auth/login', [AdminController::class, "index_login"])
+    ->name('admin.login');
+Route::post('/admin/auth/login', [AdminController::class, "login_req"])
+    ->name('admin.handleLogin');
+Route::get('/admin/auth/logout', [AdminController::class, "logout"]);
+
+Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
+    ->name('admin.dashboard')
+    ->middleware('auth:webadmin');
+Route::get('/admin/dashboard/list-kuis', [AdminController::class, 'index_list_kuis'])
+    ->name('admin.dashboard.list-kuis')
+    ->middleware('auth:webadmin');
