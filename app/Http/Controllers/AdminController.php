@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kuis;
+use App\Models\Results;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -40,7 +44,35 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        return render('admin.dashboard.Dashboard');
+        $kuiss = Kuis::latest()->limit(5)->get();
+        $latest_kuis = [];
+        foreach ($kuiss as $kuis) {
+            $temp = [
+                'id_kuis' => $kuis->id_kuis,
+                'slug' => $kuis->slug,
+                'title' => $kuis->title,
+                'status' => $kuis->status,
+                'users_jawab' => Results::all()->where('id_kuis', $kuis->id_kuis)->count(),
+                'best_score' => Results::where('id_kuis', $kuis->id_kuis)->max('score'),
+            ];
+            array_push($latest_kuis, $temp);
+        }
+
+        $users_score = DB::table('results')
+            ->join('users', 'results.id_user', '=', 'users.id_user')
+            ->join('kuis', 'results.id_kuis', '=', 'kuis.id_kuis')
+            ->limit(10)
+            ->orderBy('score', 'desc')
+            ->get();
+
+        $data = [
+            'n_kuis' => Kuis::all()->count(),
+            'n_users' => User::all()->count(),
+            'latest_kuis' => $latest_kuis,
+            'users_score' => $users_score,
+        ];
+
+        return render('admin.dashboard.Dashboard', $data);
     }
 
     public function index_list_kuis()
