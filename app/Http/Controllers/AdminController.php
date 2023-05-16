@@ -15,7 +15,13 @@ class AdminController extends Controller
 
     public function index_login()
     {
-        return render('admin.login.LoginAdmin');
+        if (Auth::guard('webadmin')->check()) {
+            return redirect()->route('admin.dashboard');
+        } else if (Auth::guard('web')->check()) {
+            redirect('/');
+        } else {
+            return render('admin.login.LoginAdmin');
+        }
     }
 
     public function login_req(Request $request)
@@ -77,6 +83,18 @@ class AdminController extends Controller
 
     public function index_list_kuis()
     {
-        return render('admin.dashboard.DaftarKuis');
+        return render('admin.dashboard.DaftarKuis', [
+            'kuiss' => Kuis::paginate(10),
+        ]);
+    }
+
+    public function api_list_kuis(Request $request)
+    {
+        if ($request->get('search') != null) {
+            $keyword = '%' . $request->get('search')  . '%';
+            return Kuis::where('title', 'like', $keyword)->paginate(5);
+        } else {
+            return Kuis::paginate(10);
+        }
     }
 }

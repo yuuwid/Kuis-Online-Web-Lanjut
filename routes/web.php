@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KuisController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 
@@ -33,4 +34,10 @@ Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
     ->middleware('auth:webadmin');
 Route::get('/admin/dashboard/list-kuis', [AdminController::class, 'index_list_kuis'])
     ->name('admin.dashboard.list-kuis')
+    ->middleware('auth:webadmin');
+Route::get('/admin/dashboard/list-kuis/d/{slug}', [KuisController::class, 'detail_kuis'])
+    ->name('admin.kuis.detail')
+    ->middleware('auth:webadmin');
+Route::get('/admin/dashboard/list-kuis/d/toggle-jawaban/{id_soal}/{id_jawaban}', [KuisController::class, 'toggle_jawaban'])
+    ->name('admin.kuis.toggle-jawaban')
     ->middleware('auth:webadmin');

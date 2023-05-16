@@ -20,4 +20,10 @@ class Kuis extends Model
     {
         return $this->hasMany(Soal::class, "id_soal");
     }
+
+
+    public function invitation_code()
+    {
+        return $this->belongsTo(InvitationCode::class, "id_invite_code");
+    }
 }

@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             KuisSeeder::class,
             SoalSeeder::class,
             ResultSeeder::class,
+            InvitationCodeSeeder::class,
         ]);
     }
 }

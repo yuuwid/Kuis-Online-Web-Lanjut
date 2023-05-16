@@ -15,10 +15,15 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
+        Admin::create([
+            'nama' => "Admin",
+            'email' => "admin@test.com",
+            'password' => password_hash('123456', PASSWORD_BCRYPT)
+        ]);
 
         Admin::create([
             'nama' => "Admin",
-            'email' => "test@test.com",
+            'email' => "admin",
             'password' => password_hash('123456', PASSWORD_BCRYPT)
         ]);
     }
